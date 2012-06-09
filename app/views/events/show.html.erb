@@ -2,6 +2,8 @@
 	<div class="span4">
 		<div class="well">
 			<h2><%= @event.name %></h2>
+			<h3><%= @venue.name %></h3>
+			<%= link_to 'Add a venue', event_venues_path(@event), class: "btn" %>
 		</div>	
 	</div>
 	<div class="span8">

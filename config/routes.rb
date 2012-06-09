@@ -1,4 +1,6 @@
 Sociallunch::Application.routes.draw do
+  
+
   root :to => 'static_pages#home'
 
   resources :yellowpages
@@ -6,6 +8,7 @@ Sociallunch::Application.routes.draw do
   resources :users
   resources :events do
     resources :participants
+    resources :venues
   end
 
   # The priority is based upon order of creation:

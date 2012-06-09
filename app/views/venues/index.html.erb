@@ -1,0 +1,37 @@
+<h1>Search for a venue</h1>
+
+<%= form_tag event_venues_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+
+
+<% if params[:search] %>
+<table class="table table-striped">
+ <tr>
+  <th>Name</th>
+  <th>City</th>
+  <th>Street</th>
+  <th></th>
+</tr>  
+  <% @results.listings.each do |r|  %>
+  <tr>
+    
+    <td><%= r.name %></td>
+    <td><%= r.address.city %></td>
+    <td><%= r.address.street %></td>
+    <td>
+      <%= form_tag event_venues_path, method: 'post' do %>
+        <%= hidden_field_tag 'venue[yellowpage_id]',r.id %>
+        <%= hidden_field_tag 'venue[name]',r.name %>
+        <%= submit_tag "Select", :name => nil %>
+      <% end %>
+    </td>
+    
+  <% end %>
+  </tr>
+</table>
+<% end %>
+

@@ -17,6 +17,7 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @participants = @event.participants.all
+    @venue = @event.venues.first
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @event }
