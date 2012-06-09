@@ -12,7 +12,7 @@ gem 'will_paginate', '3.0.3'
 gem 'bootstrap-will_paginate', '0.0.5'
 gem 'koala'
 gem 'yellow_api'
-
+gem "mail"
 
 group :development, :test do
   gem 'sqlite3', '1.3.5'
