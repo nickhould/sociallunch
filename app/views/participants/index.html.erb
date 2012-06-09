@@ -1,27 +1,25 @@
 <h1>Listing participants</h1>
 
-<table>
+<table class="table table-striped">
   <tr>
+    <th></th>
     <th>Name</th>
-    <th>Email</th>
     <th>Response</th>
-    <th></th>
-    <th></th>
+
     <th></th>
   </tr>
 
 <% @participants.each do |participant| %>
   <tr>
+    <td><%= gravatar_for participant %></td>
     <td><%= participant.name %></td>
-    <td><%= participant.email %></td>
     <td><%= participant.response %></td>
-    <td><%= link_to 'Show', participant %></td>
-    <td><%= link_to 'Edit', edit_participant_path(participant) %></td>
-    <td><%= link_to 'Destroy', participant, confirm: 'Are you sure?', method: :delete %></td>
+
+    <td><%= link_to 'Destroy', event_participant_path(params[:event_id],participant.id), confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Participant', new_participant_path %>
+<%= link_to 'New Participant', new_event_participant_path(@event) %>
