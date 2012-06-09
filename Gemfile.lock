@@ -220,6 +220,7 @@ DEPENDENCIES
   jquery-rails (= 2.0.0)
   koala
   launchy (= 2.1.0)
+  mail
   pg (= 0.12.2)
   rails (= 3.2.5)
   rb-fsevent (= 0.4.3.1)

@@ -27,6 +27,7 @@ class ParticipantsController < ApplicationController
   # GET /participants/new.json
   def new
     @participant = @event.participants.new
+    
 
     respond_to do |format|
       format.html # new.html.erb
@@ -46,7 +47,9 @@ class ParticipantsController < ApplicationController
 
     respond_to do |format|
       if @participant.save
-        format.html { redirect_to event_path(@event), notice: 'Participant was successfully created.' }
+        # Tell the UserMailer to send a welcome Email after save
+        ParticipantMailer.invitation_email(@participant, @event).deliver
+        format.html { redirect_to event_participants_path(@event), notice: 'Participant was successfully created.' }
         format.json { render json: @participant, status: :created, location: @participant }
       else
         format.html { render action: "new" }
