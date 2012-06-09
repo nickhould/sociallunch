@@ -1,4 +1,9 @@
 Sociallunch::Application.routes.draw do
+
+  resources :events do
+    resources :participants
+  end
+
   root :to => 'static_pages#home'
 
   resources :users
