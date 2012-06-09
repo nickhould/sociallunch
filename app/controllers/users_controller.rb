@@ -1,5 +1,6 @@
 
 class UsersController < ApplicationController
+  before_filter :verification
   # GET /users
   # GET /users.json
   def index
@@ -81,4 +82,12 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private 
+    def verification
+      facebook_user = Koala::Facebook::OAuth.new.get_user_info_from_cookies(cookies)
+      facebook_id = facebook_user[:uid]
+      
+      user = User.where(:facebook_id, )
+    end
 end
