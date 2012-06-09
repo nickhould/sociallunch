@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    @events = @user.events.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -89,10 +89,12 @@ class EventsController < ApplicationController
 
       if(@facebook_cookies)
         session[:facebook_id] = @facebook_cookies
-
-        @user = User.new(facebook_id: session[:facebook_id])
-        @user.save
-        
+        if ! User.where(:facebook_id=> session[:facebook_id]).first
+          @user = User.new(facebook_id: session[:facebook_id])
+          @user.save
+        else
+          @user = User.where(:facebook_id=> session[:facebook_id]).first
+        end
       else
         redirect_to root_path
       end
