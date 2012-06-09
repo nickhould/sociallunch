@@ -85,9 +85,15 @@ class UsersController < ApplicationController
 
   private 
     def verification
-      facebook_user = Koala::Facebook::OAuth.new.get_user_info_from_cookies(cookies)
-      facebook_id = facebook_user[:uid]
+      @facebook_cookies ||= Koala::Facebook::OAuth.new('288927707869961', '66d99ebdbb9d830169dd882f5b7189dc').get_user_info_from_cookies(cookies)
       
-      user = User.where(:facebook_id, )
+      if(@facebook_cookies)
+        session[:facebook_id] = @facebook_cookies[:uid]
+        if !User.where(:facebook_id, session[:facebook_id])
+          User.create(facebook_id: session[:facebook_id])
+        end
+      else
+        redirect_to root_path
+      end
     end
 end
