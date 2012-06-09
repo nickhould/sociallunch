@@ -1,0 +1,27 @@
+<h1>Search for a venue</h1>
+
+<%= form_tag yellowpages_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+
+
+<% if params[:search] %>
+<table class="table table-striped">
+ <tr>
+  <th>Name</th>
+  <th>City</th>
+  <th>Street</th>
+</tr>  
+  <% @results.listings.each do |r|  %>
+  <tr>
+    <td><%= r.name %></td>
+    <td><%= r.address.city %></td>
+    <td><%= r.address.street %></td>
+  <% end %>
+  </tr>
+</table>
+<% end %>
+

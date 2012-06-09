@@ -1,5 +1,7 @@
 Sociallunch::Application.routes.draw do
 
+  resources :yellowpages
+
   resources :events do
     resources :participants
   end

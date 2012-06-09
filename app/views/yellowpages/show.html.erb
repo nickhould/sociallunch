@@ -1,0 +1,11 @@
+<h1>Search Results</h1>
+
+<%= form_for @yellowpages do |f| %>
+  <%= f.label :type %>:
+  <%= f.text_field :type %><br />
+
+  <%= f.label :location %>:
+  <%= f.text_field :location %><br />
+
+  <%= f.submit %>
+<% end %>
